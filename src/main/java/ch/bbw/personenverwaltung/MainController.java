@@ -1,14 +1,16 @@
 package ch.bbw.personenverwaltung;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
 public class MainController {
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
     public MainController(PersonRepository personRepository) {
@@ -18,7 +20,6 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("persons", personRepository.findAll());
-        System.out.println(personRepository.findAll());
         return "index";
     }
 
