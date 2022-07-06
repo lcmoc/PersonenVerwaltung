@@ -23,14 +23,8 @@ public class MainController {
         return "index";
     }
 
-    @PostMapping("/")
-    public String submitIndex(@ModelAttribute Person person, @PathVariable long id) {
-        personRepository.delete(person);
-        return "index";
-    }
-
     @GetMapping("/person/{id}")
-    public String article(@PathVariable long id, Model model) {
+    public String person(@PathVariable long id, Model model) {
         model.addAttribute("person", personRepository.findById(id));
         return "person";
     }
@@ -39,5 +33,17 @@ public class MainController {
     public String submitPerson(@ModelAttribute Person person, @PathVariable long id) {
         personRepository.save(person);
         return "person";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable long id, Model model) {
+        model.addAttribute("person", personRepository.findById(id));
+        return "delete";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deletePerson(@ModelAttribute Person person, @PathVariable long id) {
+        personRepository.delete(person);
+        return "delete";
     }
 }
