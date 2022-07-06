@@ -23,6 +23,12 @@ public class MainController {
         return "index";
     }
 
+    @PostMapping("/")
+    public String submitIndex(@ModelAttribute Person person, @PathVariable long id) {
+        personRepository.delete(person);
+        return "index";
+    }
+
     @GetMapping("/person/{id}")
     public String article(@PathVariable long id, Model model) {
         model.addAttribute("person", personRepository.findById(id));
@@ -30,7 +36,8 @@ public class MainController {
     }
 
     @PostMapping("/person/{id}")
-    public String submitIndex(@ModelAttribute Person person, @PathVariable long id) {
+    public String submitPerson(@ModelAttribute Person person, @PathVariable long id) {
+        personRepository.save(person);
         return "person";
     }
 }
