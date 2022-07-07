@@ -46,4 +46,16 @@ public class MainController {
         personRepository.delete(person);
         return "delete";
     }
+    @GetMapping("/add")
+    public String addPerson(Model model) {
+        model.addAttribute("person", new Person());
+        return "add";
+    }
+
+    @PostMapping("/add")
+    public String addsubmitPerson(@ModelAttribute Person person) {
+        personRepository.save(person);
+        return "add";
+    }
+
 }
