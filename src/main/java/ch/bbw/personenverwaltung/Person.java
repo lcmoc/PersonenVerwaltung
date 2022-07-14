@@ -11,6 +11,8 @@ public class Person {
     private String firstname;
     private String lastname;
     private String email;
+    private String gender;
+    private String birthdate;
 
     public Long getId() {
         return id;
@@ -42,5 +44,21 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 }
