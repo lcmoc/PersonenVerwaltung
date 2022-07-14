@@ -22,12 +22,11 @@
         <div class="col-12">
             <form action="#" th:action="@{/delete/{id}(id = ${id})}" th:object="${person}" method="post">
                 <input type="hidden" class="form-control" id="email" placeholder="E-Mail" th:field="*{email}">
-                <input type="hidden" class="form-control" id="firstName" placeholder="Vorname" th:field="*{firstName}">
-                <input type="hidden" class="form-control" id="lastName" placeholder="Nachname" th:field="*{lastName}">
+                <input type="hidden" class="form-control" id="firstName" placeholder="Vorname" th:field="*{firstname}">
+                <input type="hidden" class="form-control" id="lastName" placeholder="Nachname" th:field="*{lastname}">
                 <p class="text-danger">Wollen Sie den Nutzer wirklich löschen?</p>
                 <input type="submit" class="btn btn-danger" value="Ja"/>
                 <a href="/" class="btn btn-success">Zurück</a>
-
             </form>
         </div>
     </div>

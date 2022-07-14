@@ -28,6 +28,8 @@
                             <th scope="col">Vorname</th>
                             <th scope="col">Nachname</th>
                             <th scope="col">E-Mail</th>
+                            <th scope="col">Geschlecht</th>
+                            <th scope="col">Geburtsdatum</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -36,9 +38,11 @@
                             <th:block th:each="person: ${persons}">
                                 <tr>
                                     <td th:text="${person.id}"></td>
-                                    <td th:text="${person.firstName}"></td>
-                                    <td th:text="${person.lastName}"></td>
+                                    <td th:text="${person.firstname}"></td>
+                                    <td th:text="${person.lastname}"></td>
                                     <td th:text="${person.email}"></td>
+                                    <td th:text="${person.gender}"></td>
+                                    <td th:text="${person.birthdate}"></td>
                                     <td>
                                         <a class="btn btn-success" th:href="@{/person/{id}(id = ${person.id})}">bearbeiten</a>
                                     </td>

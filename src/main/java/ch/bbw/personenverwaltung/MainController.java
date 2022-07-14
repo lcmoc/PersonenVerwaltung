@@ -7,10 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
+
+import java.util.regex.Pattern;
 
 @Controller
 public class MainController {
     private final PersonRepository personRepository;
+
+    public static boolean testEmail(String email) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        return Pattern.compile(regexPattern)
+                .matcher(email)
+                .matches();
+    }
+
 
     @Autowired
     public MainController(PersonRepository personRepository) {
@@ -30,7 +44,14 @@ public class MainController {
     }
 
     @PostMapping("/person/{id}")
-    public String submitPerson(@ModelAttribute Person person, @PathVariable long id) {
+    public String submitPerson(@Valid Person person, BindingResult bindingResult, @PathVariable long id, Model model) {
+        if(!testEmail(person.getEmail())) {
+            model.addAttribute("error", "Email falsch");
+        }
+        if (bindingResult.hasErrors()) {
+            return "person";
+        }
+
         personRepository.save(person);
         return "person";
     }
@@ -53,7 +74,14 @@ public class MainController {
     }
 
     @PostMapping("/add")
-    public String addsubmitPerson(@ModelAttribute Person person) {
+    public String addsubmitPerson(@Valid Person person, BindingResult bindingResult, Model model) {
+        if(!testEmail(person.getEmail())) {
+            model.addAttribute("error", "Email falsch");
+        }
+        if (bindingResult.hasErrors()) {
+            return "add";
+        }
+
         personRepository.save(person);
         return "add";
     }

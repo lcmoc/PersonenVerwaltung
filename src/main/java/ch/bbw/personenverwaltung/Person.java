@@ -1,6 +1,11 @@
 package ch.bbw.personenverwaltung;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import javax.persistence.*;
+import java.util.regex.Pattern;
 
 @Entity
 public class Person {
@@ -8,10 +13,22 @@ public class Person {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min=2, max=30)
     private String firstname;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String lastname;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String email;
+
     private String gender;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String birthdate;
 
     public Long getId() {
@@ -22,20 +39,20 @@ public class Person {
         this.id = id;
     }
 
-    public String getFirstName() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstname = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastname = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {

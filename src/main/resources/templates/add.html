@@ -24,21 +24,39 @@
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" id="email" placeholder="E-Mail" th:field="*{email}">
-                </div>
+                    <p class="text-danger" th:if="${error}">E-Mail Fehler</p>
+                    <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-Mail Fehler</p>
+                 </div>
+                 <div class="form-group">
+                     <label for="firstName">Vorname</label>
+                     <input type="text" class="form-control" id="firstName" placeholder="Vorname" th:field="*{firstname}">
+                     <p class="text-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Vorname Fehler</p>
+                 </div>
+                 <div class="form-group">
+                     <label for="lastName">Nachname</label>
+                     <input type="text" class="form-control" id="lastName" placeholder="Nachname" th:field="*{lastname}">
+                     <p class="text-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Nachnahme Fehler</p>
+
+                 </div>
                 <div class="form-group">
-                    <label for="firstName">Vorname</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Vorname" th:field="*{firstName}">
+                    <label for="lastName">Gechlecht</label>
+                    <select class="form-select" th:field="*{gender}">
+                        <option th:value="m" th:text="Männlich"></option>
+                        <option th:value="f" th:text="Weiblich"></option>
+                    </select>
+                    <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Geschlecht Fehler</p>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nachname</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="Nachname" th:field="*{lastName}">
+                    <input type="text" class="form-control" id="birthdate" placeholder="birthdate" th:field="*{birthdate}">
+                    <p class="text-danger" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}">Geburtsdatum Fehler</p>
                 </div>
-                <input type="submit" class="btn btn-primary"/>
-                <a href="/" class="btn btn-success">Zurück</a>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-</html>
+                 <input type="submit" class="btn btn-primary"/>
+                 <a href="/" class="btn btn-success">Zurück</a>
+             </form>
+         </div>
+     </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+ </body>
+ </html>
